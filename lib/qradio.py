@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import sys, os
 sys.path.append(os.path.abspath(os.path.join('..')))
 # Import all stations
@@ -52,6 +52,7 @@ class From_domain(object):
             self.hash_dict.update({'IBM': Ibmxforce().domain_to_hash(search_value)})
             self.hash_dict.update({'Threatexpert': Threatexpert().domain_to_hash(search_value)})
             self.hash_dict.update({'Totalhash': Totalhash().domain_to_hash(search_value)})
+            self.hash_dict.update({'Threatcrowd': Threatcrowd().domain_to_hash(search_value)})
 
             if self.verbose:
                 return helpers.Common().verbose_output(search_value, From_domain.__name__, self.to_hash.__name__,
@@ -215,6 +216,7 @@ class From_hash(object):
             self.ip_dict.update({'Malwr': Malwr().hash_to_ipv4(search_value)})
             self.ip_dict.update({'Threatexpert': Threatexpert().hash_to_ipv4(search_value)})
             self.ip_dict.update({'Totalhash': Totalhash().hash_to_ipv4(search_value)})
+            self.ip_dict.update({'Threatcrowd': Threatcrowd().hash_to_ipv4(search_value)})
 
             if self.verbose:
                 return helpers.Common().verbose_output(search_value, From_hash.__name__, self.to_ipv4.__name__,
@@ -229,6 +231,7 @@ class From_hash(object):
         if search_value:
             self.domain_dict.update({'Threatexpert': Threatexpert().hash_to_domain(search_value)})
             self.domain_dict.update({'Totalhash': Totalhash().hash_to_domain(search_value)})
+            self.domain_dict.update({'Threatcrowd': Threatcrowd().hash_to_domain(search_value)})
 
 
             if self.verbose:
@@ -263,6 +266,7 @@ class From_hash(object):
             self.url_dict.update({'Threatexpert': Threatexpert().hash_to_url(search_value)})
             self.url_dict.update({'Totalhash': Totalhash().hash_to_url(search_value)})
             self.url_dict.update({'Virustotal': Virustotal().hash_to_url(search_value)})
+            self.url_dict.update({'Threatcrowd': Threatcrowd().hash_to_url(search_value)})
 
             if self.verbose:
                 return helpers.Common().verbose_output(search_value, From_hash.__name__, self.to_url.__name__,

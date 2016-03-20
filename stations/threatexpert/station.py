@@ -96,16 +96,17 @@ class Threatexpert(object):
             if response:
                 if response.findAll('table', {'align': 'center'}): # More than 1 page
                     pages = response.findAll('td', {'class': 'page_btn'}) # find all other pages
-                    for number in pages[:-1]: # Exclude 'Next' from page numbers
-                        params = {'page': number.text} # set page number as parameter
-                        sub_response = self.single_search(search_value, params=params)
-                        if sub_response:
-                            url_list.extend(sub_response)
-                        return url_list
+                    if pages:
+                        for number in pages[:-1]: # Exclude 'Next' from page numbers
+                            params = {'page': number.text} # set page number as parameter
+                            sub_response = self.single_search(search_value, params=params)
+                            if sub_response:
+                                url_list.extend(sub_response)
+                            return url_list
                 else:
                     return self.single_search(search_value)
         else:
-            return []
+            return url_list
 
 ### Station tunes
 
@@ -138,23 +139,24 @@ class Threatexpert(object):
     def hash_to_ipv4(self, hash_value):
         bs_result_list = []
         url_list = self.main_search(hash_value)
-        for request_url in url_list:
-            response = self.api.session_helper(station_name=self.station_name, method_type='get', endpoint=self.endpoint,
-                                               response_format=self.response_format, go_to_url=request_url)
-            if response:
-                bs_result_list.append(response)
-        for li in bs_result_list:
-            line = li.findAll('li') # Search for list items
-            for i in line:
-                match = re.findall(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', i.text) # IP address
+        if url_list:
+            for request_url in url_list:
+                response = self.api.session_helper(station_name=self.station_name, method_type='get', endpoint=self.endpoint,
+                                                   response_format=self.response_format, go_to_url=request_url)
+                if response:
+                    bs_result_list.append(response)
+        if bs_result_list:
+            for li in bs_result_list:
+                line = li.findAll('li') # Search for list items
+                for i in line:
+                    match = re.findall(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', i.text) # IP address
+                    if match:
+                        self.ip_list.extend(match)
+            for elements in bs_result_list:
+                tables = elements.findAll('table', {'class': 'tbl'}) # Search all tables with data
+                match = re.findall(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', str(tables)) # IP address
                 if match:
                     self.ip_list.extend(match)
-
-        for elements in bs_result_list:
-            tables = elements.findAll('table', {'class': 'tbl'}) # Search all tables with data
-            match = re.findall(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', str(tables)) # IP address
-            if match:
-                self.ip_list.extend(match)
 
         return list(set(self.ip_list))
 

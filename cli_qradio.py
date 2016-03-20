@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7
+# -*- coding: utf-8 -*-
 from argparse import ArgumentParser, FileType, RawTextHelpFormatter
 from lib.qradio import *
 import time
@@ -12,7 +12,7 @@ class Command_line_parser(object):
 
 
         # QRadio version
-        self.version = '1.4.0'
+        self.version = '1.4.1'
 
         # Provide description and parameters for arguments
         self.parser = ArgumentParser(
