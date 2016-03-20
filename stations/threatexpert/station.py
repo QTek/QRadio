@@ -53,8 +53,9 @@ class Threatexpert(object):
 
     def splitter(self, url_list):
         output = []
-        for key in url_list:
-            output.append(key.split('=')[1])
+        if url_list:
+            for key in url_list:
+                output.append(key.split('=')[1])
         return output
 
     def url_parser(self, response):
@@ -98,8 +99,9 @@ class Threatexpert(object):
                     for number in pages[:-1]: # Exclude 'Next' from page numbers
                         params = {'page': number.text} # set page number as parameter
                         sub_response = self.single_search(search_value, params=params)
-                        url_list.extend(sub_response)
-                    return url_list
+                        if sub_response:
+                            url_list.extend(sub_response)
+                        return url_list
                 else:
                     return self.single_search(search_value)
         else:
