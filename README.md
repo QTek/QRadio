@@ -11,45 +11,50 @@
                                             ~ Tune In
 ```
 
-### QRadio
+# QRadio
 QRadio is a tool/framework designed to consolidate cyber threats intelligence sources.
 The goal of the project is to establish a robust modular framework for extraction of intelligence data from vetted sources.
 
 It uses multiple threat intelligence sources for searching supplied data. Currently we crawl the following:
-##### Threat Info databases:
-    * [ThreatCrowd](https://www.threatcrowd.org/)
-    * [Virustotal](https://virustotal.com/)
-    * [Cymon](https://cymon.io/)
-    * [IBM X-Force Exchange](https://exchange.xforce.ibmcloud.com/)
-    * [Metadefender](https://www.metadefender.com/)
-    * [#totalhash](https://totalhash.cymru.com/)
-##### Sandboxes:
-    * [Malwr](https://malwr.com/)
-    * [Threatexpert](http://www.threatexpert.com/)
-##### Blacklists: 
-    * [ASPROX Tracker](http://atrack.h3x.eu/)
-    * [Feodot Tacker](http://feodotracker.abuse.ch/)
-    * [Zeus Tracker](http://zeustracker.abuse.ch/)
-    * [malc0de](http://malc0de.com/bl/)
-    * [McAfee](http://www.siteadvisor.com/sites/)
-##### Other: 
-    * [FortiGuard](http://fortiguard.com/iprep)
-    * [hpHosts](http://hosts-file.net/)
 
-
-You can search by the following data types:
+**You can search by the following data types:**
 - Domain
 - IPv4
 - Hash
 - Imphash
 - Mutex
 
-## Crendentials for sources
+##### Threat Info databases:
+- [ThreatCrowd](https://www.threatcrowd.org/)
+- [Virustotal](https://virustotal.com/)
+- [Cymon](https://cymon.io/)
+- [IBM X-Force Exchange](https://exchange.xforce.ibmcloud.com/)
+- [Metadefender](https://www.metadefender.com/)
+- [#totalhash](https://totalhash.cymru.com/)
+
+##### Sandboxes:
+- [Malwr](https://malwr.com/)
+- [Threatexpert](http://www.threatexpert.com/)
+
+##### Blacklists: 
+- [ASPROX Tracker](http://atrack.h3x.eu/)
+- [Feodot Tacker](http://feodotracker.abuse.ch/)
+- [Zeus Tracker](http://zeustracker.abuse.ch/)
+- [malc0de](http://malc0de.com/bl/)
+- [McAfee](http://www.siteadvisor.com/sites/)
+
+##### Other: 
+- [FortiGuard](http://fortiguard.com/iprep)
+- [hpHosts](http://hosts-file.net/)
+
+### Credentials for sources
+
 - ```/lib/config.py```
-# Usage
+
+## Usage
 `python cli_qradio.py`
 
-## Options
+### Options
  
 #### Output verbosity:
 __Return CSV if not specified__
