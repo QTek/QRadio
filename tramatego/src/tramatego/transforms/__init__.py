@@ -11,6 +11,7 @@ __email__ = ''
 __status__ = 'Development'
 
 __all__ = [
+    'ipv4_to_hash',
     'ipv4_to_blacklist',
     'ipv4_to_score',
     'ipv4_to_domain',
